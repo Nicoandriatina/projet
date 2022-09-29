@@ -40,9 +40,9 @@ require_once 'model.php';
                     <td>$bill->customer</td>
                     <td>$bill->cashier</td>
                     <td>$bill->amount</td>
-                    <td>$bill->received</td>
+                    <td>$bill->reseived</td>
                     <td>$bill->returned</td>
-                    <td>$bill->states</td>
+                    <td>$bill->state</td>
                     <td>
                     <a href=\"#\" class=\"text-info me-2 infoBtn\" title=\"voir detail\"> <i class=\"fas fa-info-circle\"></i> </a>
                     <a href=\"#\" class=\"text-primary me-2 editBtn\" title=\"voir detail\"> <i class=\"fas fa-edit\"></i> </a>
@@ -58,4 +58,3 @@ require_once 'model.php';
         echo 'aucune facture pour le moment';
     }
 }
-?>
