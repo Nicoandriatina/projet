@@ -17,28 +17,29 @@ class Database
     }
     public function create(string $Nombateau, string $Marque, string $categories, string $chargemax, string $chargemin, string $typeproduit)
     {
-        $q = $this->getconnexion()->prepare("INSERT INTO bateux(Nombateau, Marque, categories, chargemax, chargemin, typeproduit)
+        $q = $this->getconnexion()->prepare("INSERT INTO bateaux(Nombateau, Marque, categories, chargemax, chargemin, typeproduit)
          VALUES (:Nombateau, :Marque, :categories, :chargemax, :chargemin, :typeproduit)");
         return $q->execute([
             'Nombateau' => $Nombateau,
             'Marque' => $Marque,
             'categories' => $categories,
             'chargemax' => $chargemax,
-            'chaegemin' => $chargemin,
+            'chargemin' => $chargemin,
             'typeproduit' => $typeproduit
         ]);
     }
     public function read()
     {
-        return $this->getconnexion()->query( "SELECT * FROM bateaux ORDER BY id")->fetchAll(PDO::FETCH_OBJ);
+        return $this->getconnexion()->query("SELECT * FROM bateaux ORDER BY id")->fetchAll(PDO::FETCH_OBJ);
     }
-    public function countBills(): int{
-        return(int)$this->getconnexion()->query( "SELECT COUNT(id) as count FROM bateaux")->fetch()[0];
+    public function countBills(): int
+    {
+        return (int)$this->getconnexion()->query("SELECT COUNT(id) as count FROM bateaux")->fetch()[0];
     }
-    public function getSingleBill(int $id){
+    public function getSingleBill(int $id)
+    {
         $q = $this->getConnexion()->prepare("SELECT * FROM bateaux WHERE id = :id");
         $q->execute(['id' => $id]);
         return $q->fetch(PDO::FETCH_OBJ);
     }
-
 }

@@ -1,22 +1,19 @@
 <?php
 require_once 'model.php';
-    $db = new Database();
-    // creation des factures
-    if(isset($_POST['action']) && $_POST['action'] == 'create')
-{
+$db = new Database();
+// creation des factures
+if (isset($_POST['action']) && $_POST['action'] == 'create') {
     extract($_POST);
     //$returned=(int)$received - (int)$amount;
-    $db->create($Nombateau,$Marque, $categories, $chargemax, $chargemin, $typeproduit);
-    echo'perfect';
-    
+    $db->create($Nombateau, $Marque, $categories, $chargemax, $chargemin, $typeproduit);
+    echo 'perfect';
 }
- //recuperation des factures
- if(isset($_POST['action']) && $_POST['action'] == 'fetch')
-{
-    $output='';
-    if($db->countBills()>0){
-        $bills=$db->read();
-        $output.='
+//recuperation des factures
+if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
+    $output = '';
+    if ($db->countBills() > 0) {
+        $bills = $db->read();
+        $output .= '
         <table class="table table-striped">
           <thead>
             <tr>
@@ -32,11 +29,11 @@ require_once 'model.php';
           </thead>
           <tbody>
         ';
-        foreach($bills as $bill){
+        foreach ($bills as $bill) {
             $output .= " 
 
                 <tr>
-                    <th scope=\"row\">$bill->id</th>
+                    <th scope=\"row\">$bill->ID</th>
                     <td>$bill->Nombateau</td>
                     <td>$bill->Marque</td>
                     <td>$bill->categories</td>
@@ -44,22 +41,21 @@ require_once 'model.php';
                     <td>$bill->chargemin</td>
                     <td>$bill->typeproduit</td>
                     <td>
-                    <a href=\"#\" class=\"text-info me-2 infoBtn\" title=\"voir detail\" data-id=\"$bill->id\"> <i class=\"fas fa-info-circle\"></i> </a>
-                    <a href=\"#\" class=\"text-primary me-2 editBtn\" title=\"voir detail\" data-id=\"$bill->id\"> <i class=\"fas fa-edit\" data-bs-toggle='modal' data-bs-target='#UpdateModal'></i> </a>
-                    <a href=\"#\" class=\"text-danger me-2 deleteBtn\" title=\"voir detail\" data-id=\"$bill->id\"> <i class=\"fas fa-trash-alt\"></i> </a>
+                    <a href=\"#\" class=\"text-info me-2 infoBtn\" title=\"voir detail\" data-id=\"$bill->ID\"> <i class=\"fas fa-info-circle\"></i> </a>
+                    <a href=\"#\" class=\"text-primary me-2 editBtn\" title=\"voir detail\" data-id=\"$bill->ID\"> <i class=\"fas fa-edit\" data-bs-toggle='modal' data-bs-target='#UpdateModal'></i> </a>
+                    <a href=\"#\" class=\"text-danger me-2 deleteBtn\" title=\"voir detail\" data-id=\"$bill->ID\"> <i class=\"fas fa-trash-alt\"></i> </a>
                     </td>
                 </tr>
             ";
-
         }
         $output .= "</tbody></table>";
         echo $output;
-    }else{
+    } else {
         echo 'aucune facture pour le moment';
     }
 }
 //info pour detail de facture
-if(isset($_POST['workingId'])){
-    $workingId=(int)$_POST['workingId'];
-    echo json_encode($db->getSingleBill($workingId)); 
+if (isset($_POST['workingId'])) {
+    $workingId = (int)$_POST['workingId'];
+    echo json_encode($db->getSingleBill($workingId));
 }
