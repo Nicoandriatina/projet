@@ -44,4 +44,29 @@ $(function () {
             }
         })
     }
+    $('body').on('click','.editBtn', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "process.php",
+            type: 'post',
+            data:{workingId:this.dataset.id},
+            success: function(response) {
+                let billinfo=JSON.parse(response);
+                $('#NombateauUpdate').val(billinfo.Nombateau);
+                $('#MarqueUpdate').val(billinfo.Marque);
+                $('#categoriespdate').val(billinfo.categories);
+                $('#chargemaxUpdate').val(billinfo.chargemax);
+                $('#chargeminUpdate').val(billinfo.chargemin);
+                let select= document.querySelector('#stateUpdate');
+                let stateOption=Array.from(select.options);
+                stateOption.forEach((o,i)=> {
+                    if(o.value==billinfo.state) select.selectedIndex=i;         
+                      
+                    
+
+                })
+
+            }
+        })
+    })
 })
