@@ -42,4 +42,18 @@ class Database
         $q->execute(['id' => $id]);
         return $q->fetch(PDO::FETCH_OBJ);
     }
+    public function update(int $id, string $Nombateau, string $Marque, string $categories, string $chargemax, string $chargemin, string $typeproduit)
+    {
+        $q = $this->getconnexion()->prepare("UPDATE bateaux SET Nombateau= :Nombateau, Marque= :Marque, Categorie= :Categorie, chargemax= :chargemax, chargemin= :chargemin, typeproduit= :typeproduit WHERE id = :id");
+        return $q->execute([
+            'Nombateau' => $Nombateau,
+            'Marque' => $Marque,
+            'categories' => $categories,
+            'chargemax' => $chargemax,
+            'chargemin' => $chargemin,
+            'typeproduit' => $typeproduit,
+            'id' => $id
+        ]);
+
+    }
 }

@@ -1,14 +1,13 @@
 <?php
 require_once 'model.php';
 $db = new Database();
-// creation des factures
+// creation des liste de bateau
 if (isset($_POST['action']) && $_POST['action'] == 'create') {
     extract($_POST);
-    //$returned=(int)$received - (int)$amount;
     $db->create($Nombateau, $Marque, $categories, $chargemax, $chargemin, $typeproduit);
     echo 'perfect';
 }
-//recuperation des factures
+//recuperation des liste de bateau
 if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
     $output = '';
     if ($db->countBills() > 0) {
@@ -54,8 +53,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
         echo 'aucune facture pour le moment';
     }
 }
-//info pour detail de facture
+//info pour detail de bateu
 if (isset($_POST['workingId'])) {
     $workingId = (int)$_POST['workingId'];
     echo json_encode($db->getSingleBill($workingId));
+}
+// Modification des bateau
+if (isset($_POST['action']) && $_POST['action'] == 'Update') {
+    extract($_POST);
+    $db->Update($id, $Nombateau, $Marque, $categories, $chargemax, $chargemin, $typeproduit);
+    echo 'perfect';
 }

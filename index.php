@@ -138,15 +138,16 @@
     </div>
 
     <!-- update Modal -->
-    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="createModalLabel">Noveau Bateau</h5>
+            <h5 class="modal-title" id="UpdateModalLabel">Modifier bateaux</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form action="" method="post" id="UpdateformOrder">
+              <input type="hidden" name="id" id="bill_id">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="UpdateNombateau" name="UpdateNombateau">
                 <label for="UpdateNombateau">Nom du Bateau</label>
@@ -187,34 +188,11 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-            <button type="button" class="btn btn-primary" id="create" name="create"> <i class="fas fa-plus"></i> Ajouter</button>
+            <button type="button" class="btn btn-primary" id="Update" name="Update"> <i class="fas fa-sync"></i> Modifier</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="row">
-      <div class="col-lg8 col-sm mb-5 mx-auto">
-        <h1 class="fs-4 text-center lead text-prymary">Bateaux</h1>
-      </div>
-    </div>
-    <div class="dropdown-divider"> </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h5 class="fw-bold mb-8">Liste des bateaux</h5>
-      </div>
-      <div class="col-md-6">
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-primary btn-sm me-3" data-bs-toggle="modal" data-bs-target="#createModal"> <i class="fas fa-folder-plus">Nouveau</i> </button>
-          <a href="#" class="btn btn-success-btn-sm" id="export"> <i class="fas fa-table">Exporter</i> </a>
-        </div>
-      </div>
-    </div>
-    <div class="dropdown-divider"> </div>
-    <div class="row">
-      <div class="table-responsive" id="orderTable">
-         -->
-      <!-- </div>
-    </div> -->
    
   </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
