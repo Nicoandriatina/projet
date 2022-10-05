@@ -61,6 +61,7 @@ if (isset($_POST['workingId'])) {
 // Modification des bateau
 if (isset($_POST['action']) && $_POST['action'] == 'Update') {
     extract($_POST);
-    $db->Update($id, $Nombateau, $Marque, $categories, $chargemax, $chargemin, $typeproduit);
+    $db->update($id, $UpdateNombateau, $UpdateMarque, $Updatecategories, $Updatechargemax, $Updatechargemin, $Updatetypeproduit);
+
     echo 'perfect';
 }
