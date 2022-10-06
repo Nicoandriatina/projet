@@ -53,7 +53,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
         echo 'aucune facture pour le moment';
     }
 }
-//info pour detail de bateu
+//info pour detail de bateux
 if (isset($_POST['workingId'])) {
     $workingId = (int)$_POST['workingId'];
     echo json_encode($db->getSingleBill($workingId));
@@ -65,3 +65,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'Update') {
 
     echo 'perfect';
 }
+
+//info @le icone Info @action
+if (isset($_POST['informationId'])) {
+    $informationId = (int)$_POST['informationId'];
+    echo json_encode($db->getSingleBill($informationId));
+}
+

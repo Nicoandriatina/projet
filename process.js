@@ -1,7 +1,7 @@
 $(function () {
     $('table').DataTable();
 
-    //creation d'un facture
+    //creation du liste des bateau
     $('#create').on('click', function (e) {
         let formOrder = $('#formOrder')
         if (formOrder[0].checkValidity())
@@ -22,7 +22,7 @@ $(function () {
             }
         })
     })
-    //recuperation du facture 
+    //recuperation du la liste de bateau
     getBills();
     function getBills() {
         $.ajax({
@@ -30,7 +30,6 @@ $(function () {
             type: 'post',
             data: { action: 'fetch' },
             success: function (response) {
-                // console.log(response);
                 let table = document.querySelector('#orderTable');
                 table.innerHTML = response;
             }
@@ -82,5 +81,34 @@ $(function () {
                 }
             })
         }
+    })
+
+    $('body').on('click','.infoBtn', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: "process.php",
+            type: 'post',
+            data: { informationId: this.dataset.id },
+            success: function(response){
+                let informations= JSON.parse(response);
+                Swal.fire({
+                    title: '<strong>Information de la bateaux Numero ${informations.id} </strong>',
+                    icon: 'info',
+                    html:
+                    'Nom du Bateau: <b>$(informations.Nombateau)</b><br>'+
+                    'Marque du bateau: <b>"//${informations.Marque}"</b> </br>'+
+                    'Categorie du Bateau: <b>${informations.categories}</b><br>'+
+                    'charge Maximal du Bateau: <b>${informations.chargemax}</b><br>'+
+                    'Charge Minimal du Bateau: <b>${informations.chrgemin}</b><br>'+
+                    'types de produit que le  Bateau transporte: <b>${informations.typeproduit}</b><br>',
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                      '<i class="fa fa-thumbs-up"></i> super!',
+                    confirmButtonAriaLabel: 'Thumbs up, great!',
+                  })
+                }
+        })
     })
 })
