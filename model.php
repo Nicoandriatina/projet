@@ -55,4 +55,9 @@ class Database
             'id' => $id
         ]);
     }
+    public function delete(int $id){
+        $q = $this->getconnexion()->prepare(" DELETE FROM bateaux WHERE id = :id");
+        return $q->execute(['id' => $id]);
+    }
 }
+?>
