@@ -30,7 +30,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
         ';
         foreach ($bills as $bill) {
             $output .= " 
-
                 <tr>
                     <th scope=\"row\">$bill->ID</th>
                     <td>$bill->Nombateau</td>
@@ -70,5 +69,33 @@ if (isset($_POST['action']) && $_POST['action'] == 'Update') {
 if (isset($_POST['informationId'])) {
     $informationId = (int)$_POST['informationId'];
     echo json_encode($db->getSingleBill($informationId));
+}
+//suppression
+if (isset($_POST['deleteId'])) {
+    $deleteId = (int)$_POST['deleteId'];
+    echo ($db->delete($deleteId));
+}
+
+//exportation
+if (isset($_GET['action']) && $_GET['action'] == 'exporter') {
+    $excelFileName="Liste des bateaux".date('YmdHis').'xls';
+    header("contein-Type: application/vnd.ms-excel");
+    header("conteint-Disposition: attachement; filename=$excelFileName");
+
+    $nomcolonne = ['Identifiant', 'Nom', 'Marque', 'categories', 'chargemaximale', 'chargemine', 'Type'];
+
+    $data = implode("\t", array_values($nomcolonne)). "\n";
+    if($db->countBills()>0){
+        $bill= $db->read();  
+        foreach($bills as $bill) {
+            $exceldata = [$bill->id, $bill->Nombateau, $bill->Marque, $bill->categories, $bill->chargemax, $bill->chargemax, $bill->typeproduit];
+            $data .= implode("\t", $exceldata). "\n";
+
+        } 
+    }else{
+        $data="Aucun liste trouver...." . "\n"; 
+    }
+   echo $data;
+   die();
 }
 

@@ -1,6 +1,5 @@
 $(function () {
-    $('table').DataTable();
-
+    $('tables').Datatable();
     //creation du liste des bateau
     $('#create').on('click', function (e) {
         let formOrder = $('#formOrder')
@@ -54,9 +53,7 @@ $(function () {
                 let UpdatetypeproduitOption = Array.from(select.options);
                 UpdatetypeproduitOption.forEach((o, i) => {
                     if (o.value == billinfo.state) select.selectedIndex = i;
-
                 })
-
             }
         })
     })
@@ -82,7 +79,6 @@ $(function () {
             })
         }
     })
-
     $('body').on('click','.infoBtn', function(e){
         e.preventDefault();
         $.ajax({
@@ -114,7 +110,6 @@ $(function () {
     
     $('body').on('click','.deleteBtn', function(e){
         e.preventDefault();
-
         Swal.fire({
             title: 'vous volez vraiment supprimer'+ this.dataset.id,
             text: "cette action est irreversible!",

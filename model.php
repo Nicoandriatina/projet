@@ -2,7 +2,6 @@
 
 class Database
 {
-    // erreur tato le host, nom table facture sans "s" ary reseived
     private $host = 'mysql:host=localhost;dbname=crudajax';
     private $user = 'root';
     private $password = '';
