@@ -1,5 +1,5 @@
 $(function () {
-    $('tables').Datatable();
+   $('table').Datatable();
     //creation du liste des bateau
     $('#create').on('click', function (e) {
         let formOrder = $('#formOrder')
