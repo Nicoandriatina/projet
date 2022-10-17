@@ -31,6 +31,10 @@ $(function () {
             success: function (response) {
                 let table = document.querySelector('#orderTable');
                 table.innerHTML = response;
+                // ajout datatables
+                $(document).ready(function () {
+                    $('#table').DataTable();
+                });
             }
         })
     }
@@ -139,4 +143,8 @@ $(function () {
             }
         })
     })
+
+
+
+
 })

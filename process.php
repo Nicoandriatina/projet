@@ -13,7 +13,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'fetch') {
     if ($db->countBills() > 0) {
         $bills = $db->read();
         $output .= '
-        <table class="table table-striped">
+        <table class="table table-striped" id="table">
           <thead>
             <tr>
               <th scope="col">ID</th>
